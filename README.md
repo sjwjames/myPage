@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Academic Personal Website
+
+A modern academic personal website built with Next.js, featuring a professional homepage with research information and a blog section with PDF viewing capabilities for research papers and articles.
+
+## Features
+
+- Modern, responsive design using Tailwind CSS
+- Academic homepage with sections for:
+  - Research interests and publications
+  - Recent news and updates
+  - Teaching information
+  - Professional experience
+- Research blog with PDF viewing functionality
+- PDF.js integration for smooth PDF rendering
+- Mobile-friendly navigation
+
+## Prerequisites
+
+- Node.js 18.0.0 or later
+- npm 9.0.0 or later
 
 ## Getting Started
 
-First, run the development server:
-
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <your-repo-url>
+cd mypage
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Start the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+## Customizing the Website
 
-To learn more about Next.js, take a look at the following resources:
+### Homepage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Edit the content in `app/page.tsx` to update your:
+- Personal information and academic position
+- Research interests and areas
+- Publications list
+- Recent news and updates
+- Teaching information
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Blog/Publications
 
-## Deploy on Vercel
+1. Place your PDF research papers and articles in the `public/blog` directory
+2. Update the `blogPosts` array in:
+   - `app/blog/page.tsx` - For the blog listing page
+   - `app/blog/[id]/page.tsx` - For the individual blog post page
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Adding Sample PDFs
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For testing purposes, you can add sample PDFs to the `public/blog` directory. In a production environment, you would replace these with your actual research papers and articles.
+
+## Built With
+
+- [Next.js](https://nextjs.org/) - React framework
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [PDF.js](https://mozilla.github.io/pdf.js/) - PDF viewer
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
