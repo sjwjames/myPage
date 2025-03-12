@@ -65,6 +65,13 @@ const blogPosts = [
   }
 ];
 
+// Required for static site generation with dynamic routes
+export async function generateStaticParams() {
+  return blogPosts.map((post) => ({
+    id: post.id,
+  }));
+}
+
 export default function BlogPost({ params }: { params: { id: string } }) {
   const id = use(Promise.resolve(params.id));
   const post = blogPosts.find(p => p.id === id);

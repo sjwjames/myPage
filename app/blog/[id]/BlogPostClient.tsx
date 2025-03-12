@@ -32,6 +32,8 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
   const [numPages, setNumPages] = useState<number | undefined>(undefined);
   const [pageNumber, setPageNumber] = useState<number>(1);
 
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
   }
@@ -53,7 +55,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
       <div className="text-center py-8">
         <h1 className="text-2xl font-bold text-red-600">Blog post not found</h1>
         <p className="mt-4">
-          <Link href="/blog" className="text-blue-600 hover:underline">
+          <Link href={`${basePath}/blog`} className="text-blue-600 hover:underline">
             Return to blog list
           </Link>
         </p>
@@ -64,7 +66,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
   return (
     <div className="max-w-4xl mx-auto space-y-8 pb-12">
       <div className="mb-8">
-        <Link href="/blog" className="text-blue-600 hover:underline">
+        <Link href={`${basePath}/blog`} className="text-blue-600 hover:underline">
           ← Back to all articles
         </Link>
       </div>
@@ -116,7 +118,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
           <div className="border rounded-lg p-4 bg-gray-50">
             <div className="flex justify-center">
               <Document
-                file={post.pdfUrl}
+                file={`${basePath}${post.pdfUrl}`}
                 onLoadSuccess={onDocumentLoadSuccess}
                 loading={
                   <div className="flex justify-center py-12">
@@ -166,7 +168,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
               <p className="text-gray-600">Download the complete paper in PDF format</p>
             </div>
             <a 
-              href={post.pdfUrl}
+              href={`${basePath}${post.pdfUrl}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
