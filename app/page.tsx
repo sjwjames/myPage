@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import nextConfig from "@/next.config";
 export default function Home() {
   return (
     <div className="space-y-12">
@@ -8,7 +8,7 @@ export default function Home() {
         <div className="flex justify-center mb-6">
           <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-blue-50 shadow-md">
             <Image 
-              src={'/myPage/images/headshot.jpg'} 
+              src={`${nextConfig.basePath}/images/headshot.jpg`} 
               alt="Profile photo" 
               fill
               style={{ objectFit: 'cover' }}
