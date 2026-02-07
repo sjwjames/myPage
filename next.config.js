@@ -4,7 +4,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '/myPage', // Replace 'myPage' with your repository name
+  // basePath: '/myPage', // Replace 'myPage' with your repository name
 }
 
 module.exports = nextConfig 

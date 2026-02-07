@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '/myPage', // Replace 'myPage' with your repository name
+  // basePath: '/myPage', // Replace 'myPage' with your repository name
 };
 
 export default nextConfig;

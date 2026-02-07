@@ -7,7 +7,7 @@ export default function Home() {
         <div className="flex justify-center mb-6">
           <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-blue-50 shadow-md">
             <Image 
-              src="https://sjwjames.github.io/myPage/images/headshot.jpg" 
+              src="/images/headshot.jpg" 
               alt="Profile photo" 
               fill
               style={{ objectFit: 'cover' }}
