@@ -31,7 +31,6 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
   const [pageNumber, setPageNumber] = useState<number>(1);
 
   // const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  const basePath = "/myPage";
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
@@ -117,7 +116,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
           <div className="border rounded-lg p-4 bg-gray-50">
             <div className="flex justify-center">
               <Document
-                file={`${basePath}${post.pdfUrl}`}
+                file={`${post.pdfUrl}`}
                 onLoadSuccess={onDocumentLoadSuccess}
                 loading={
                   <div className="flex justify-center py-12">
