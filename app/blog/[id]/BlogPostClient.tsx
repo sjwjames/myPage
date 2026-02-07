@@ -30,7 +30,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
   const [numPages, setNumPages] = useState<number | undefined>(undefined);
   const [pageNumber, setPageNumber] = useState<number>(1);
 
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || 'myPage';
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '/myPage';
   
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
@@ -126,8 +126,8 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
               >
                 <Page
                   pageNumber={pageNumber}
-                  renderTextLayer={true}
-                  renderAnnotationLayer={true}
+                  renderTextLayer={false}
+                  renderAnnotationLayer={false}
                   scale={1.5}
                 />
               </Document>
