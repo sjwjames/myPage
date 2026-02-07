@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { Document, Page } from 'react-pdf';
 import { pdfjs } from 'react-pdf';
 
