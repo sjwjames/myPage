@@ -33,15 +33,15 @@ export default function Home() {
         <ul className="space-y-4 text-gray-700">
           <li className="flex gap-2">
             <span className="text-gray-500">[Apr 2024]</span>
-            <span>Paper "Efficient Variational Sequential Information Control" accepted to AISTATS 2024!</span>
+            <span>Paper “Efficient Variational Sequential Information Control” accepted to AISTATS 2024!</span>
           </li>
           <li className="flex gap-2">
             <span className="text-gray-500">[Feb 2022]</span>
-            <span>Paper "Privacy-preserving training of tree ensembles over continuous data" published in PoPETS 2022</span>
+            <span>Paper “Privacy-preserving training of tree ensembles over continuous data” published in PoPETS 2022</span>
           </li>
           <li className="flex gap-2">
             <span className="text-gray-500">[Jan 2021]</span>
-            <span>Paper "High performance logistic regression for privacy-preserving genome analysis" published in BMC Medical Genomics</span>
+            <span>Paper “High performance logistic regression for privacy-preserving genome analysis” published in BMC Medical Genomics</span>
           </li>
           <li className="flex gap-2">
             <span className="text-gray-500">[Nov 2019]</span>

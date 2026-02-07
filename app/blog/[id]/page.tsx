@@ -1,4 +1,4 @@
-import { use } from 'react';
+import React from 'react';
 import BlogPostClient from './BlogPostClient';
 
 // This would typically come from your database or CMS
@@ -72,9 +72,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPost({ params }: { params: { id: string } }) {
-  const id = use(Promise.resolve(params.id));
-  const post = blogPosts.find(p => p.id === id);
-  
+export default function BlogPost(props: unknown) {
+  const params = (props as { params: { id: string } }).params;
+  const id = params.id;
+  const post = blogPosts.find(p => p.id === id) || undefined;
+
   return <BlogPostClient post={post} />;
-} 
+}

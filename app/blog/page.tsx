@@ -242,7 +242,7 @@ export default function BlogPage() {
                 ))}
                 {searchQuery && (
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                    Search: "{searchQuery}"
+                    Search: “{searchQuery}”
                     <button 
                       onClick={() => setSearchQuery('')}
                       className="ml-1.5 inline-flex items-center justify-center w-4 h-4 rounded-full text-blue-400 hover:bg-blue-200 hover:text-blue-600"
