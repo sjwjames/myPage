@@ -34,7 +34,7 @@ export default function ChatbotPage() {
 
     try {
       // NOTE: Replace this URL with your actual separate service endpoint
-      const API_URL = process.env.NEXT_PUBLIC_CHATBOT_API_URL || "/api/chat-placeholder";
+      const API_URL = "https://agent-proxy-27679876328.us-central1.run.app/chat";
 
       const response = await fetch(API_URL, {
         method: "POST",
