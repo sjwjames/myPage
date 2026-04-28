@@ -46,6 +46,7 @@ export default function ChatbotPage() {
         body: JSON.stringify({ query: userMessage }),
       });
 
+
       // Simple mock fallback if the endpoint doesn't exist yet for demonstration
       if (!response.ok) {
         throw new Error("Failed to connect to service. Using mock fallback.");

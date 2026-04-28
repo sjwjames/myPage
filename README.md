@@ -37,6 +37,11 @@ npm install
 npm run dev
 ```
 
+3.1. deploy:
+```bash
+npm run deploy
+```
+
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Customizing the Website
