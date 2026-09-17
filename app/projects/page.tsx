@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
+import { ChatBubbleLeftRightIcon, MegaphoneIcon } from "@heroicons/react/24/outline";
 
 export default function ProjectsPage() {
   return (
@@ -24,6 +24,24 @@ export default function ProjectsPage() {
             </p>
             <div className="text-blue-600 font-medium group-hover:translate-x-1 transition-transform flex items-center">
               Try it out 
+              <span className="ml-1">→</span>
+            </div>
+          </div>
+        </Link>
+
+        <Link href="/projects/ads-platform" className="group block">
+          <div className="border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:border-emerald-200 bg-white h-full flex flex-col">
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="p-2 bg-emerald-50 text-emerald-700 rounded-lg group-hover:bg-emerald-700 group-hover:text-white transition-colors">
+                <MegaphoneIcon className="w-6 h-6" />
+              </div>
+              <h2 className="text-2xl font-semibold text-gray-900">Ads AI Platform</h2>
+            </div>
+            <p className="text-gray-600 mb-4 flex-grow">
+              A production-inspired text advertising marketplace with advertiser and platform operations views.
+            </p>
+            <div className="text-emerald-700 font-medium group-hover:translate-x-1 transition-transform flex items-center">
+              Explore the platform
               <span className="ml-1">→</span>
             </div>
           </div>

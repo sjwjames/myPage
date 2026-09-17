@@ -1,0 +1,126 @@
+{
+  "claim_boundaries": [
+    "Criteo statistics and metrics are not personal-site traffic.",
+    "This snapshot contains no synthetic product-training results.",
+    "This snapshot contains no live local product events.",
+    "This snapshot contains no illustrative UI simulation values.",
+    "Static publication does not constitute deployment, canary, or promotion evidence."
+  ],
+  "delivery_mode": "static_read_only",
+  "intended_surface": "github_pages_static_portfolio",
+  "measurement_classes": {
+    "criteo_historical_replay_metrics": {
+      "availability": "not_included",
+      "reason": "No approved versioned replay report was supplied to this exporter."
+    },
+    "criteo_offline_dataset_statistics": {
+      "availability": "included",
+      "chronological_split": {
+        "replay": "[day 25, end]",
+        "train": "[day 0, day 21)",
+        "validation": "[day 21, day 25)"
+      },
+      "counts": {
+        "clicked_rows": {
+          "exact": true,
+          "value": 5947563
+        },
+        "converted_rows": {
+          "exact": true,
+          "value": 806196
+        },
+        "estimated_campaigns": {
+          "exact": false,
+          "method": "hyperloglog",
+          "value": 671
+        },
+        "estimated_users": {
+          "exact": false,
+          "method": "hyperloglog",
+          "value": 6143680
+        },
+        "replay_rows": {
+          "exact": true,
+          "value": 3028604
+        },
+        "total_rows": {
+          "exact": true,
+          "value": 16468027
+        },
+        "train_rows": {
+          "exact": true,
+          "value": 11405791
+        },
+        "validation_rows": {
+          "exact": true,
+          "value": 2033632
+        }
+      },
+      "source": "Criteo Attribution Modeling for Bidding",
+      "usage": "offline_logged_data_only"
+    },
+    "criteo_validation_metrics": {
+      "availability": "included",
+      "evaluation": {
+        "approx_auc_bin_count": 1000,
+        "click": {
+          "approx_auc": 0.6837103125268,
+          "calibration_error": 0.02777703845812069,
+          "examples": 2033632.0,
+          "log_loss": 0.6100732211760819,
+          "positive_rate": 0.3699499221098016
+        },
+        "complete_partition": true,
+        "conversion_per_impression": {
+          "approx_auc": 0.8395860377898983,
+          "calibration_error": 0.005502221402640298,
+          "examples": 2033632.0,
+          "log_loss": 0.15376698435627484,
+          "positive_rate": 0.04931669053201366
+        },
+        "device": "cpu",
+        "precision": "fp32",
+        "rows": 2033632
+      },
+      "model": {
+        "completed_epochs": 3,
+        "feature_version": "criteo-hashed-v1",
+        "model_version": "criteo-deepfm-v1",
+        "optimizer_steps": 33417
+      },
+      "usage": "complete_chronological_offline_validation_only"
+    },
+    "github_pages_static_evidence_snapshot": {
+      "availability": "included",
+      "description": "This file is a static evidence projection, not a new measurement."
+    },
+    "illustrative_ui_simulation": {
+      "availability": "not_included",
+      "reason": "Illustrative UI values are not evidence and are not exported here."
+    },
+    "live_local_product_events": {
+      "availability": "not_included",
+      "reason": "Local mutable events must not be embedded in a public static snapshot."
+    },
+    "synthetic_product_training_metrics": {
+      "availability": "not_included",
+      "reason": "Synthetic product-training evidence requires a separate source contract."
+    }
+  },
+  "provenance": {
+    "checkpoint_sha256": "9299d541ae5d34301abc7ce0a85cbba2c0b66e0ee84f5549ec30c5e84b3254f3",
+    "manifest": {
+      "filename": "criteo-attribution-v1-manifest.json",
+      "sha256": "eacb832cba80c7f76403b44ebe117295652d4508da15625fca44e20eb6b10e03"
+    },
+    "source_dataset_sha256": "94ac7a465564349bc7ba008602211d5990a3c53cc133abc0aadef61ea2391a98",
+    "validation_report": {
+      "filename": "criteo-offline-validation-v1.json",
+      "sha256": "9e4f226596efebf59b628d62e7f1b905d0e5d23f96af1698eb23d4a237c0e33d"
+    }
+  },
+  "schema_version": 1,
+  "snapshot_at": "2026-09-17T20:28:47.926549+00:00",
+  "snapshot_at_source": "criteo_validation_report.evaluated_at",
+  "snapshot_id": "ads-ai-offline-evidence-v1"
+}
