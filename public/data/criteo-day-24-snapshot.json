@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "snapshot_id": "criteo-attribution-day-24-v1",
+  "source": "Criteo Attribution Modeling for Bidding",
+  "usage": "offline_logged_data_only",
+  "partition": "validation",
+  "source_relative_day": 24,
+  "time_window_seconds": {
+    "start_inclusive": 2073600,
+    "end_exclusive": 2160000
+  },
+  "counts": {
+    "impressions": 436408,
+    "clicks": 164916,
+    "conversions": 20985,
+    "distinct_user_ids": 354369,
+    "distinct_campaign_ids": 666
+  },
+  "rates": {
+    "click_through_rate_percent": 37.78940807684552,
+    "conversion_per_impression_percent": 4.808573628347785
+  },
+  "selected_campaign": {
+    "alias": "Anonymous campaign b2935c12",
+    "selection": "Highest impression count on source-relative day 24",
+    "counts": {
+      "impressions": 13282,
+      "clicks": 4718,
+      "conversions": 743,
+      "distinct_user_ids": 10486
+    },
+    "rates": {
+      "click_through_rate_percent": 35.52175877126938,
+      "conversion_per_impression_percent": 5.5940370426140635
+    },
+    "clicks_by_three_hour_window": [
+      { "label": "00–03", "clicks": 171 },
+      { "label": "03–06", "clicks": 475 },
+      { "label": "06–09", "clicks": 716 },
+      { "label": "09–12", "clicks": 751 },
+      { "label": "12–15", "clicks": 748 },
+      { "label": "15–18", "clicks": 905 },
+      { "label": "18–21", "clicks": 704 },
+      { "label": "21–24", "clicks": 248 }
+    ],
+    "claim_boundary": "The source contains campaign IDs but no advertiser IDs. This campaign is presented as a single-campaign advertiser workspace, not as a verified multi-campaign advertiser account."
+  },
+  "clicks_by_three_hour_window": [
+    { "label": "00–03", "clicks": 4051 },
+    { "label": "03–06", "clicks": 6934 },
+    { "label": "06–09", "clicks": 21685 },
+    { "label": "09–12", "clicks": 24229 },
+    { "label": "12–15", "clicks": 24498 },
+    { "label": "15–18", "clicks": 29699 },
+    { "label": "18–21", "clicks": 33902 },
+    { "label": "21–24", "clicks": 19918 }
+  ],
+  "claim_boundaries": [
+    "These counts are Criteo offline logged-data statistics, not personal-site traffic.",
+    "The source timestamp is relative; day 24 is not presented as a calendar date.",
+    "The cost field is not reported as spend, bid, clearing price, or billed amount.",
+    "No local product events, synthetic product-training metrics, model evaluation results, checkpoints, or release details are included."
+  ]
+}

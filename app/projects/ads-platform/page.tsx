@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import evidenceSnapshot from "../../../public/data/ads-ai-offline-evidence-v1.json";
 import AdsPlatformClient from "./AdsPlatformClient";
-import OfflineMlLaboratory, { OfflineMlEvidence } from "./OfflineMlLaboratory";
 
 export const metadata: Metadata = {
   title: "Ads AI Platform | Jianwei Shen",
@@ -22,10 +20,5 @@ export const metadata: Metadata = {
 };
 
 export default function AdsPlatformPage() {
-  return (
-    <>
-      <AdsPlatformClient />
-      <OfflineMlLaboratory evidence={evidenceSnapshot as OfflineMlEvidence} />
-    </>
-  );
+  return <AdsPlatformClient />;
 }

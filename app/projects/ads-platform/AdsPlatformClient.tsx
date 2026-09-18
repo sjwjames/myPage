@@ -30,6 +30,7 @@ import {
   ApiOverview,
   ApiPublisher,
 } from "./AdsPlatformApi";
+import criteoDaySnapshot from "../../../public/data/criteo-day-24-snapshot.json";
 
 type Role = "advertiser" | "admin";
 type CampaignStatus = "Active" | "Paused" | "Pending review" | "Rejected";
@@ -201,7 +202,7 @@ function PerformanceChart({ title, subtitle, points }: { title: string; subtitle
           <p className="text-sm text-slate-500">{subtitle}</p>
         </div>
       </div>
-      <div className="mt-7 flex h-48 items-end gap-2 sm:gap-3" aria-label="Seven-day performance chart">
+      <div className="mt-7 flex h-48 items-end gap-2 sm:gap-3" aria-label={title}>
         {chartPoints.map((point) => (
           <div key={point.label} className="flex h-full flex-1 flex-col items-center justify-end gap-2">
             <div className="flex h-full w-full items-end">
@@ -364,6 +365,97 @@ function AdvertiserDashboard({ campaigns, dailyReport, onToggle, onOpenForm }: {
     { label: "CTR", value: `${ctr.toFixed(2)}%`, change: "Projected clicks / impressions" },
     { label: "Spend", value: formatMoney(totals.spend), change: "Settled CPC charges", tone: "neutral" },
   ];
+
+  if (publicShowcaseMode) {
+    const selectedCampaign = criteoDaySnapshot.selected_campaign;
+    const snapshotMetrics: Metric[] = [
+      {
+        label: "Impressions",
+        value: formatInteger(selectedCampaign.counts.impressions),
+        change: "Exact logged rows",
+      },
+      {
+        label: "Clicks",
+        value: formatInteger(selectedCampaign.counts.clicks),
+        change: "Observed click labels",
+      },
+      {
+        label: "CTR",
+        value: `${selectedCampaign.rates.click_through_rate_percent.toFixed(2)}%`,
+        change: "Clicks / impressions",
+      },
+      {
+        label: "Conversions",
+        value: formatInteger(selectedCampaign.counts.conversions),
+        change: `${selectedCampaign.rates.conversion_per_impression_percent.toFixed(2)}% per impression`,
+        tone: "neutral",
+      },
+    ];
+    const hourlyPoints = selectedCampaign.clicks_by_three_hour_window.map((bucket) => ({
+      label: bucket.label,
+      value: bucket.clicks,
+    }));
+
+    return (
+      <div className="space-y-6">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-700">
+            Advertiser workspace
+          </p>
+          <h2 className="mt-1 text-2xl font-semibold tracking-tight text-slate-950">
+            {selectedCampaign.alias}
+          </h2>
+          <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-500">
+            A single Criteo campaign during the same complete held-out Day 24 window used by the
+            admin view. It is an offline campaign snapshot, not traffic from this website.
+          </p>
+        </div>
+
+        <MetricGrid metrics={snapshotMetrics} />
+
+        <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
+          <PerformanceChart
+            title="Campaign clicks by three-hour window"
+            subtitle="Exact click-label counts · Criteo source-relative day 24"
+            points={hourlyPoints}
+          />
+          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="flex items-start gap-3">
+              <div className="rounded-xl bg-emerald-50 p-2 text-emerald-700">
+                <CircleStackIcon className="h-5 w-5" />
+              </div>
+              <div>
+                <h2 className="font-semibold text-slate-950">Campaign snapshot</h2>
+                <p className="mt-1 text-sm text-slate-500">
+                  Read-only historical reporting for one anonymous campaign.
+                </p>
+              </div>
+            </div>
+            <dl className="mt-5 grid gap-3 sm:grid-cols-2">
+              {[
+                ["Status", "Historical snapshot"],
+                ["Window", "Source-relative Day 24"],
+                ["Distinct users", formatInteger(selectedCampaign.counts.distinct_user_ids)],
+                ["Selection", "Highest impression count"],
+              ].map(([label, value]) => (
+                <div key={label} className="rounded-xl bg-slate-50 px-4 py-3">
+                  <dt className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                    {label}
+                  </dt>
+                  <dd className="mt-1.5 text-sm font-semibold text-slate-800">{value}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-5 rounded-xl border border-amber-100 bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-900">
+              Criteo exposes campaign IDs but no advertiser IDs. This is therefore a
+              single-campaign advertiser workspace, not a verified multi-campaign account. Spend,
+              budget, bids, and creative text are not inferred from unavailable fields.
+            </p>
+          </section>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -550,10 +642,94 @@ function AdminDashboard({
     { name: "Advertiser reporting", path: "GET /v1/advertiser/campaigns", p99: "event-derived" },
     { name: "Admin overview", path: "GET /v1/admin/overview", p99: "authenticated" },
   ];
+  const adminSnapshotMetrics: Metric[] = [
+    {
+      label: "Impressions",
+      value: formatInteger(criteoDaySnapshot.counts.impressions),
+      change: "Exact logged rows",
+    },
+    {
+      label: "Clicks",
+      value: formatInteger(criteoDaySnapshot.counts.clicks),
+      change: "Observed click labels",
+    },
+    {
+      label: "CTR",
+      value: `${criteoDaySnapshot.rates.click_through_rate_percent.toFixed(2)}%`,
+      change: "Clicks / impressions",
+    },
+    {
+      label: "Conversions",
+      value: formatInteger(criteoDaySnapshot.counts.conversions),
+      change: `${criteoDaySnapshot.rates.conversion_per_impression_percent.toFixed(2)}% per impression`,
+      tone: "neutral",
+    },
+  ];
+  const adminSnapshotPoints = criteoDaySnapshot.clicks_by_three_hour_window.map((bucket) => ({
+    label: bucket.label,
+    value: bucket.clicks,
+  }));
 
   return (
     <div className="space-y-6">
-      <div><p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-700">Platform operations</p><h2 className="mt-1 text-2xl font-semibold tracking-tight text-slate-950">Marketplace and model health</h2><p className="mt-1 text-sm text-slate-500">Serving, release, feedback, and moderation controls.</p></div>
+      {publicShowcaseMode && (
+        <section className="space-y-6">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-700">
+              DSP admin data snapshot
+            </p>
+            <h2 className="mt-1 text-2xl font-semibold tracking-tight text-slate-950">
+              Network-wide Criteo Day 24
+            </h2>
+            <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-500">
+              All campaigns observed during one complete held-out, source-relative day. These are
+              offline dataset statistics, not personal-site traffic or live serving telemetry.
+            </p>
+          </div>
+          <MetricGrid metrics={adminSnapshotMetrics} />
+          <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
+            <PerformanceChart
+              title="Network clicks by three-hour window"
+              subtitle="Exact click-label counts · Criteo source-relative day 24"
+              points={adminSnapshotPoints}
+            />
+            <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <div className="flex items-start gap-3">
+                <div className="rounded-xl bg-emerald-50 p-2 text-emerald-700">
+                  <CircleStackIcon className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-slate-950">Dataset boundaries</h3>
+                  <p className="mt-1 text-sm text-slate-500">
+                    A public aggregate with product and model internals omitted.
+                  </p>
+                </div>
+              </div>
+              <dl className="mt-5 grid gap-3 sm:grid-cols-2">
+                {[
+                  ["Window", "Day 24 · [2,073,600, 2,160,000) seconds"],
+                  ["Partition", "Held-out validation"],
+                  ["Distinct users", formatInteger(criteoDaySnapshot.counts.distinct_user_ids)],
+                  ["Campaigns", formatInteger(criteoDaySnapshot.counts.distinct_campaign_ids)],
+                ].map(([label, value]) => (
+                  <div key={label} className="rounded-xl bg-slate-50 px-4 py-3">
+                    <dt className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                      {label}
+                    </dt>
+                    <dd className="mt-1.5 text-sm font-semibold text-slate-800">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="mt-5 rounded-xl border border-amber-100 bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-900">
+                No spend is reported because the dataset cost field is not a literal bid, clearing
+                price, or billed amount. No local-site events or model evaluation details appear here.
+              </p>
+            </section>
+          </div>
+        </section>
+      )}
+      {publicShowcaseMode && <div className="border-t border-slate-200" />}
+      <div><p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-700">{publicShowcaseMode ? "Illustrative operations interface" : "Platform operations"}</p><h2 className="mt-1 text-2xl font-semibold tracking-tight text-slate-950">Marketplace and model health</h2><p className="mt-1 text-sm text-slate-500">{publicShowcaseMode ? "UI-only example values for serving, release, feedback, and moderation controls." : "Serving, release, feedback, and moderation controls."}</p></div>
       <MetricGrid metrics={metrics} />
       {overview && (
         <section className="rounded-2xl border border-sky-200 bg-sky-50/40 p-6 shadow-sm">
@@ -778,7 +954,7 @@ export default function AdsPlatformClient() {
   const [showCampaignForm, setShowCampaignForm] = useState(false);
   const [notice, setNotice] = useState(
     publicShowcaseMode
-      ? "Public showcase · illustrative interface data with no sign-in or backend writes"
+      ? "Advertiser demo · one anonymous Criteo campaign on Day 24"
       : apiBaseUrl
         ? "Connecting to the local ad-decision API…"
         : "Offline demo data · API URL not configured",
@@ -876,8 +1052,8 @@ export default function AdsPlatformClient() {
       setShowCampaignForm(false);
       setNotice(
         nextRole === "advertiser"
-          ? "Viewing the static campaign-management showcase · illustrative UI data"
-          : "Viewing the static platform-operations showcase · illustrative UI data",
+          ? "Advertiser demo · one anonymous Criteo campaign on Day 24"
+          : "Admin demo · network-wide Criteo snapshot plus illustrative operations UI",
       );
       return;
     }
@@ -1048,7 +1224,7 @@ export default function AdsPlatformClient() {
             <div><div className="mb-2 flex items-center gap-2 text-sm font-semibold text-emerald-300"><BoltIcon className="h-4 w-4" />Ads AI infrastructure demo</div><h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">Meridian Ads Console</h1><p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">A text-ad platform connecting campaign management, ranking, delivery, feedback, and operations.</p></div>
             <div className="inline-flex self-start rounded-xl bg-white/10 p-1 sm:self-auto" aria-label={publicShowcaseMode ? "Select showcase view" : "Select role"}>
               {(["advertiser", "admin"] as const).map((option) => (
-                <button key={option} type="button" onClick={() => void selectRole(option)} className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${role === option ? "bg-white text-slate-950 shadow-sm" : "text-slate-300 hover:text-white"}`} aria-pressed={role === option}>{publicShowcaseMode ? option === "advertiser" ? "Campaign demo" : "Operations demo" : option}</button>
+                <button key={option} type="button" onClick={() => void selectRole(option)} className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${role === option ? "bg-white text-slate-950 shadow-sm" : "text-slate-300 hover:text-white"}`} aria-pressed={role === option}>{publicShowcaseMode ? option === "advertiser" ? "Advertiser demo" : "Admin demo" : option}</button>
               ))}
             </div>
           </div>
@@ -1064,9 +1240,9 @@ export default function AdsPlatformClient() {
         </form>
       )}
 
-      <section className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 shadow-sm" aria-label="Current advertisement">
+      {!publicShowcaseMode && <section className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 shadow-sm" aria-label="Current advertisement">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div className="flex items-start gap-3"><div className="rounded-lg bg-amber-100 p-2 text-amber-800"><MegaphoneIcon className="h-5 w-5" /></div><div><p className="text-[11px] font-bold uppercase tracking-[0.18em] text-amber-700">Sponsored · {liveDecision ? "API-served placement" : "offline placement preview"}</p><p className="mt-1 text-lg font-semibold text-slate-900">{currentAd.headline}</p><p className="mt-1 text-sm text-slate-600">{currentAd.description}</p></div></div><button type="button" onClick={() => void recordAdClick()} className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800 focus:outline-none focus:ring-4 focus:ring-amber-200">{currentAd.cta}<ArrowTopRightOnSquareIcon className="h-4 w-4" /></button></div>
-      </section>
+      </section>}
 
       <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs text-slate-600 shadow-sm" role="status" aria-live="polite"><ExclamationTriangleIcon className="h-4 w-4 shrink-0 text-amber-600" />{notice}</div>
       {showCampaignForm && role === "advertiser" && <CampaignForm onClose={() => setShowCampaignForm(false)} onCreate={createCampaign} />}
