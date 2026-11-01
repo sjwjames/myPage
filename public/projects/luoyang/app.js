@@ -1,6 +1,6 @@
-import {sites, regions, sources, poem, resolveRoute} from './data.js';
-import {mapArt,sceneArt,sceneAspect} from './art.js';
-import {scenePaintings} from './paintings.js';
+import {sites, regions, sources, poem, resolveRoute} from './data.js?v=20261101-towers';
+import {mapArt,sceneArt,sceneAspect} from './art.js?v=20261101-towers';
+import {scenePaintings} from './paintings.js?v=20261101-towers';
 import {createSceneTransition} from './transitions.js';
 
 const $=s=>document.querySelector(s);

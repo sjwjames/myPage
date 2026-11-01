@@ -1,11 +1,11 @@
-// Every visitable space uses the same ink-wash illustration family.
+// Ink-wash scenes; evidence boundaries: docs/TOWER_AUDIT.md
 export const scenePaintings = {
   "yongning/courtyard": {
-    "file": "yongning-watercolor.jpg",
+    "file": "yongning-historical-v3.jpg",
     "aspect": "1563/1006"
   },
   "yongning/pagoda": {
-    "file": "yongning-watercolor.jpg",
+    "file": "yongning-historical-v3.jpg",
     "detail": true,
     "aspect": "1563/1006"
   },
@@ -22,8 +22,8 @@ export const scenePaintings = {
     "aspect": "1563/1006"
   },
   "jingming/courtyard": {
-    "file": "jingming-courtyard-v2.jpg",
-    "aspect": "1564/1006"
+    "file": "jingming-historical-v3.jpg",
+    "aspect": "1565/1005"
   },
   "jingming/garden": {
     "file": "jingming-garden-v2.jpg",
@@ -34,7 +34,7 @@ export const scenePaintings = {
     "aspect": "1563/1006"
   },
   "baima/courtyard": {
-    "file": "baima-courtyard-v2.jpg",
+    "file": "baima-historical-v3.jpg",
     "aspect": "1563/1006"
   },
   "baima/scripture": {
@@ -46,16 +46,16 @@ export const scenePaintings = {
     "aspect": "1563/1006"
   },
   "yaoguang/courtyard": {
-    "file": "yaoguang-courtyard-v2.jpg",
+    "file": "yaoguang-historical-v3.jpg",
     "aspect": "1563/1006"
   },
   "yaoguang/pagoda": {
-    "file": "yaoguang-courtyard-v2.jpg",
+    "file": "yaoguang-historical-v3.jpg",
     "detail": true,
     "aspect": "1563/1006"
   },
   "mingxuan/courtyard": {
-    "file": "mingxuan-courtyard-v2.jpg",
+    "file": "mingxuan-historical-v3.jpg",
     "aspect": "1563/1006"
   },
   "mingxuan/garden": {
@@ -63,7 +63,7 @@ export const scenePaintings = {
     "aspect": "1564/1006"
   },
   "chanxu/courtyard": {
-    "file": "chanxu-courtyard-v2.jpg",
+    "file": "chanxu-historical-v3.jpg",
     "aspect": "1563/1006"
   },
   "chanxu/parade": {
