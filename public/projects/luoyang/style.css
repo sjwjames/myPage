@@ -79,3 +79,45 @@ input::file-selector-button{font:inherit;color:inherit}
 @media(max-width:1000px){.scene-transition{top:85px}}
 @media(max-width:700px){.scene-transition{top:75px}.ink-bloom{width:85vw;height:70vh}}
 @media(prefers-reduced-motion:reduce){.scene-transition{display:none}}
+
+/* Fit the entire painting to both dimensions, keeping the same frame for hotspots. */
+@media(min-width:701px){
+ .scene-art{inset:18px 3% 92px max(28%,calc(5.3% + 360px));justify-content:center;container-type:size}
+ .scene-stage{width:min(100cqw,calc(100cqh * var(--scene-aspect,14/9)));max-width:100%;aspect-ratio:var(--scene-aspect,14/9)}
+}
+@media(min-width:701px) and (max-width:1100px){
+ .scene-art{left:calc(5.3% + 295px)}
+ .scene-copy,.inside .scene-copy{width:260px}
+ .scene-copy h1{font-size:43px}
+ .breadcrumbs{margin-bottom:30px}
+ .vertical-rule{height:28px;margin:20px 0}
+}
+.pagoda-detail .painted-art{transform:scale(1.06);transform-origin:58% 45%}
+
+/* Small screens need two header rows rather than wrapping every Chinese label. */
+:root{--masthead-height:104px}
+@media(max-width:1000px){:root{--masthead-height:85px}}
+@media(max-width:700px){
+ :root{--masthead-height:112px}
+ .masthead{height:var(--masthead-height);display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:1fr 28px;gap:4px 12px;padding:10px 20px}
+ .brand{font-size:18px;letter-spacing:2px;white-space:nowrap}
+ .masthead nav{grid-column:1/-1;grid-row:2;justify-content:center;gap:38px;padding:0}
+ .masthead nav a,.masthead nav button{white-space:nowrap;padding:5px 0;line-height:18px}
+ .sound-button{grid-column:2;grid-row:1;gap:8px}
+ .sound-info{max-width:118px;font-size:10px;white-space:nowrap}
+ .map-page,.echo-page{height:calc(100svh - var(--masthead-height))}
+ .scene-page,.scene-page.gate-scene{min-height:calc(100svh - var(--masthead-height))}
+}
+.scene-transition,.weather-atmosphere,.weather-particles{top:var(--masthead-height)}
+@media(min-width:701px){
+ .inside .scene-copy{width:340px;padding:0;background:none}
+ .gate-scene .scene-copy{background:none}
+}
+@media(min-width:701px) and (max-width:1100px){.inside .scene-copy{width:260px}}
+@media(min-width:701px) and (max-height:800px){
+ .scene-copy{margin-top:24px}
+ .breadcrumbs{margin-bottom:28px}
+ .vertical-rule{height:26px;margin:18px 0}
+ .scene-copy blockquote{margin:18px 0}
+}
+.weather-control{text-shadow:0 1px 4px var(--paper),0 -1px 4px var(--paper)}
