@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChatBubbleLeftRightIcon, MegaphoneIcon } from "@heroicons/react/24/outline";
+import { ChatBubbleLeftRightIcon, MegaphoneIcon, BuildingLibraryIcon } from "@heroicons/react/24/outline";
 
 export default function ProjectsPage() {
   return (
@@ -47,7 +47,23 @@ export default function ProjectsPage() {
           </div>
         </Link>
 
-        {/* More projects can be added here in the future */}
+        <Link href="/projects/luoyang/index.html#/map" target="_blank" rel="noopener noreferrer" prefetch={false} className="group block">
+          <div className="border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:border-amber-200 bg-white h-full flex flex-col">
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="p-2 bg-amber-50 text-amber-800 rounded-lg group-hover:bg-amber-800 group-hover:text-white transition-colors">
+                <BuildingLibraryIcon className="w-6 h-6" />
+              </div>
+              <h2 className="text-2xl font-semibold text-gray-900">Luoyang Chronicle</h2>
+            </div>
+            <p className="text-gray-600 mb-4 flex-grow">
+              Explore Northern Wei Luoyang through an interactive ink-wash city map, layered temple scenes, and poetry from the Luoyang Qielan Ji.
+            </p>
+            <div className="text-amber-800 font-medium group-hover:translate-x-1 transition-transform flex items-center">
+              Enter the ancient city
+              <span className="ml-1">→</span>
+            </div>
+          </div>
+        </Link>
       </div>
     </div>
   );

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e9e4d5">
+  <meta name="description" content="循杨衒之笔墨，游北魏洛阳。水墨城图、寺院分层游览与永宁寺门楼的历史回声。">
+  <title>洛阳伽蓝 · 墨游北魏</title>
+  <link rel="preload" href="./assets/luoyang-weibei.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="masthead"><a class="brand" href="#/map" aria-label="返回洛阳全图"><span class="seal">洛<br>陽</span><span>洛阳伽蓝<small>墨 游 北 魏</small></span></a>
+    <nav aria-label="主导航"><a href="#/map" id="map-nav">览城</a><button id="catalog-button">寻寺</button><button id="source-button">读记</button></nav>
+    <div class="sound-button" role="group" aria-label="音乐控制"><button id="sound-toggle" class="sound-icon" aria-label="暂停音乐" aria-pressed="true" title="暂停音乐"><span aria-hidden="true">♫</span></button><button id="sound-button" class="sound-info" aria-label="查看音乐信息" aria-haspopup="dialog" aria-controls="sound-dialog"><span id="sound-label">听风 · 启奏中</span></button></div>
+  </header>
+  <main id="app"></main>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <dialog id="catalog-dialog"><div class="dialog-head"><div><small>循 方 位 · 寻 伽 蓝</small><h2>城中有旧事</h2></div><button data-close aria-label="关闭寺院目录">×</button></div><div id="catalog-content"></div></dialog>
+  <dialog id="source-dialog"><div class="dialog-head"><div><small>原 文 与 复 原</small><h2>笔墨有所本</h2></div><button data-close aria-label="关闭史料面板">×</button></div><div id="source-content"></div></dialog>
+  <dialog id="sound-dialog"><div class="dialog-head"><div><small>一 城 烟 雨 · 两 段 回 声</small><h2>为洛阳配乐</h2></div><button data-close aria-label="关闭音乐设置">×</button></div>
+    <p>随游境流转，入幽庭听《Hiraeth》，归城续《金陵遗梦》。</p>
+    <div class="track-row">城中 ·《金陵遗梦 harp》<span>秩厌 · 君若</span></div>
+    <div class="track-row">幽庭 ·《Hiraeth》<span>Scott Buckley</span></div>
+    <label class="volume-row">音量<input id="volume" type="range" min="0" max="1" step="0.05" value="0.45"></label>
+    <button class="primary" id="toggle-audio">暂停音乐</button><p class="fine" id="audio-status" aria-live="polite">正在唤起配乐。</p>
+    <p class="fine">“Hiraeth” by <a href="https://www.scottbuckley.com.au/library/hiraeth/" target="_blank" rel="noopener">Scott Buckley</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>。原录音未剪辑，播放时淡入淡出。</p>
+    <p class="fine">《金陵遗梦 harp》· 秩厌（君若／张珺柔）</p>
+  </dialog>
+  <audio id="city-track" src="./assets/audio/jinling-yimeng-harp.mp3" loop preload="none"></audio><audio id="easter-track" src="./assets/audio/hiraeth.mp3" loop preload="none"></audio>
+  <script type="module" src="./app.js"></script>
+  <script type="module" src="./weather.js"></script>
+</body></html>

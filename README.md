@@ -76,3 +76,9 @@ For testing purposes, you can add sample PDFs to the `public/blog` directory. In
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Luoyang Chronicle
+
+The Projects page links to the self-contained static experience at `/myPage/projects/luoyang/index.html#/map`. Its HTML, scripts, paintings, fonts, music, and attribution assets live in `public/projects/luoyang/` and are copied into `out/` by the normal Next.js export. A full-page link keeps the ink-wash layout independent of the portfolio's navigation and styles.
+
+The site uses the `/myPage` base path to match GitHub Pages. Publish through the existing main-branch Pages workflow; no force push or separate subtree deployment is required. Source project: `/Users/jianweishen/Documents/ChatGPT/LYQLJ/luoyang-ink`. Music clearance for the user-supplied recording is managed by the site owner.
